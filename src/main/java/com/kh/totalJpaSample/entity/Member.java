@@ -15,6 +15,10 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String userId;
+
+
     @Column(nullable = false) // NULL을 허용하지 않음
     private String name;
     private String password;
