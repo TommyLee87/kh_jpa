@@ -1,6 +1,8 @@
 package com.kh.totalJpaSample.entity;
 
 import com.kh.totalJpaSample.Constant.OrderStatus;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter@Setter
 @Table(name = "orders")
 public class Order {
     @Id
@@ -26,6 +29,6 @@ public class Order {
     private LocalDateTime regTime;
     private LocalDateTime updateTime;
 
-    @OneToMany(mappedBy = "order") // 연관 관계의 주인이 아님을 표시함.
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true) // 연관 관계의 주인이 아님을 표시함.
     private List<OrderItem> orderItemList = new ArrayList<>();
 }
